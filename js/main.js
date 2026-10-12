@@ -26,3 +26,15 @@
   }, { threshold: 0.12 });
   els.forEach(function (e) { io.observe(e); });
 })();
+
+// 첫 화면 BEFORE → AFTER 사진 전환
+(function () {
+  var hero = document.querySelector('.hero'); if (!hero || !hero.querySelector('.hero-slides')) return;
+  var btns = hero.querySelectorAll('.hst'), s = 0, t;
+  function set(n) { s = n; hero.classList.toggle('after', n === 1); btns.forEach(function (b, i) { b.classList.toggle('on', i === n); }); }
+  function loop() { clearTimeout(t); t = setTimeout(function () { set(s ? 0 : 1); loop(); }, s ? 7000 : 3500); }
+  btns.forEach(function (b, i) { b.addEventListener('click', function () { set(i); loop(); }); });
+  set(0);
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { set(1); return; }
+  loop();
+})();
