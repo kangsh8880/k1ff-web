@@ -311,3 +311,43 @@ th{color:var(--slate);font-weight:700;background:var(--mist2);width:30%}
   .logo-mean{flex-direction:column;align-items:flex-start}
   .page-head{padding:130px 0 64px}
 }
+
+/* ---------- v3.1 추가: 사전상담 배지·FAQ·상담폼·방침 ---------- */
+.scard .pre{position:absolute;right:14px;top:16px;background:var(--sand);color:#7A5A12;border:1px solid #E8D29A;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
+.pre-l{display:inline-block;margin-bottom:10px;background:var(--sand);color:#7A5A12;border:1px solid #E8D29A;font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px}
+.smp{margin-top:12px}.smp a{font-weight:700;color:var(--em-blue);border-bottom:1.5px solid var(--mist)}
+.smp a:hover{border-color:var(--em-blue)}
+.rc-grade .g.g-a-big{background:var(--mint-l);color:var(--slate)}
+.faq{max-width:860px;margin:0 auto;display:grid;gap:12px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:4px 22px;transition:.2s}
+.faq details[open]{border-color:var(--chain);box-shadow:var(--sh)}
+.faq summary{cursor:pointer;list-style:none;font-weight:700;color:var(--slate);padding:16px 30px 16px 0;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:0;top:12px;font-size:22px;color:var(--blue);transition:.2s}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 0 18px;color:var(--muted);font-size:15px}
+.cform-wrap{display:grid;grid-template-columns:1.25fr .9fr;gap:28px;align-items:start}
+.cform{border:2px solid var(--slate)}
+.cform label{display:block;font-size:14px;font-weight:700;color:var(--slate);margin-top:14px}
+.cform input,.cform select,.cform textarea{display:block;width:100%;margin-top:6px;padding:11px 13px;border:1px solid #BCC7D2;border-radius:10px;font:inherit;font-size:15px;font-weight:400;color:var(--text);background:#fff}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:2px solid var(--chain);border-color:var(--chain)}
+.cform .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.req{color:var(--em-red)}
+.warn-s{font-size:13px;color:var(--muted);margin-top:12px}
+.consent{margin-top:18px;background:var(--mist2);border-radius:12px;padding:16px 18px}
+.consent table{margin:8px 0;font-size:13.5px;background:#fff}
+.consent th{width:24%;font-size:13px}.consent td,.consent th{padding:8px 10px}
+.consent .chk{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:15px}
+.consent .chk input{width:20px;height:20px;margin:0;flex:none}
+.fsubmit{margin-top:20px;width:100%;justify-content:center;font-size:16px;cursor:pointer}
+.fsubmit:disabled{opacity:.4;cursor:not-allowed}
+.fmsg{margin-top:12px;font-size:14px;font-weight:700}
+.fmsg.ok{color:var(--em-blue)}.fmsg.err{color:var(--em-red)}
+.policy{max-width:900px}
+.policy h2{font-size:20px;margin:34px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
+.policy h2:first-child{border-top:0;margin-top:0}
+.policy p,.policy li{font-size:15px;color:var(--text)}
+.policy ul{padding-left:20px;margin:6px 0}
+.policy table{margin:10px 0;font-size:14px}.policy th{width:auto}
+@media (max-width:1024px){.cform-wrap{grid-template-columns:1fr}}
+@media (max-width:720px){.cform .frow{grid-template-columns:1fr;gap:0}.policy table{display:block;overflow-x:auto}}

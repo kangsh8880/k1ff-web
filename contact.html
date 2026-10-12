@@ -28,21 +28,48 @@
   <h1>무료 30분 리스크 상담</h1>
   <p class="lead">중요한 거래 전, 30분이면 충분합니다. 조사 범위와 일정을 함께 정합니다.</p>
 </div></section>
-<section><div class="wrap grid-2">
-  <div class="card reveal" style="border:2px solid #2F3E4E">
-    <h3>이메일로 문의하기</h3>
-    <a class="mail-big" href="mailto:contact@k1ff.com?subject=%5BK1FF%20%EC%83%81%EB%8B%B4%20%EB%AC%B8%EC%9D%98%5D">contact@k1ff.com</a>
-    <p class="muted">영업일 기준 1일 이내에 회신드립니다.</p>
-    <div class="btns" style="margin-top:20px"><a class="btn btn-primary" href="mailto:contact@k1ff.com?subject=%5BK1FF%20%EC%83%81%EB%8B%B4%20%EB%AC%B8%EC%9D%98%5D">메일 작성하기 →</a></div>
-    <h3 style="margin-top:32px">문의 시 알려주시면 좋은 내용</h3>
-    <ul class="check" style="margin-top:12px">
-      <li><div><b>회사명과 담당자 연락처</b></div></li>
-      <li><div><b>조사가 필요한 기업(법인) 이름</b></div></li>
-      <li><div><b>조사 목적</b><span>예: 신규 거래처 등록, 협력사 점검</span></div></li>
-      <li><div><b>희망 일정</b></div></li>
-    </ul>
-    <p class="muted" style="font-size:14px;margin-top:18px">※ 첫 문의에는 민감한 내부자료를 보내지 마십시오. 자료 공유는 비밀유지 조건을 포함한 계약 이후에 진행합니다.</p>
-  </div>
+<section><div class="wrap cform-wrap">
+  <form class="card cform reveal" id="inquiry" data-endpoint="" novalidate>
+    <h3>상담 신청서</h3>
+    <p class="muted" style="font-size:14px">영업일 기준 1일 이내에 회신드립니다. <span class="req">*</span> 표시는 필수 항목입니다.</p>
+    <div class="frow">
+      <label>회사명 <span class="req">*</span><input name="company" required maxlength="60"></label>
+      <label>담당자명 <span class="req">*</span><input name="name" required maxlength="30"></label>
+    </div>
+    <div class="frow">
+      <label>이메일 <span class="req">*</span><input name="email" type="email" required maxlength="80"></label>
+      <label>연락처<input name="phone" type="tel" maxlength="30" placeholder="선택"></label>
+    </div>
+    <div class="frow">
+      <label>관심 서비스
+        <select name="service">
+          <option value="">선택해 주세요</option>
+          <option>P1 공급망 프로세스 사실조사</option>
+          <option>P2 협력업체 생산능력 실사</option>
+          <option>P3 해외 협력사 실사</option>
+          <option>P4 거래처 실체진단 (사전 상담 필수)</option>
+          <option>P5 산업보안 사실관계 분석 (사전 상담 필수)</option>
+          <option>P6 협력사 리스크 정기 모니터링 (사전 상담 필수)</option>
+          <option>아직 정하지 않음</option>
+        </select></label>
+      <label>희망 일정<input name="schedule" maxlength="40" placeholder="예: 11월 중 착수"></label>
+    </div>
+    <label>조사가 필요한 기업(법인)명<input name="target" maxlength="80" placeholder="선택 · 법인명만 기재해 주세요"></label>
+    <label>문의 내용 <span class="req">*</span><textarea name="message" required rows="5" maxlength="1500" placeholder="조사 목적과 상황을 간단히 적어 주세요. (예: 핵심 협력사 물량 확대 전 생산능력 확인)"></textarea></label>
+    <p class="warn-s">※ 첫 문의에는 민감한 내부자료나 개인의 사생활 정보를 적지 마십시오. 자료 공유는 비밀유지 조건을 포함한 계약 이후에 진행합니다.</p>
+    <div class="consent">
+      <p><b>개인정보 수집·이용 동의 (필수)</b></p>
+      <table>
+        <tr><th>수집 항목</th><td>회사명, 담당자명, 이메일, 연락처(선택), 문의 내용</td></tr>
+        <tr><th>이용 목적</th><td>상담 문의 접수 · 회신 및 견적 제공</td></tr>
+        <tr><th>보유 기간</th><td><b>문의 처리 완료 후 1년</b> (계약 체결 시 관계 법령에 따른 기간)</td></tr>
+      </table>
+      <p class="muted" style="font-size:13px">동의를 거부할 수 있으며, 거부 시 상담 신청이 제한됩니다. 자세한 내용은 <a href="privacy.html" target="_blank">개인정보처리방침</a>을 확인해 주세요.</p>
+      <label class="chk"><input type="checkbox" name="agree" required> 위 개인정보 수집·이용에 동의합니다.</label>
+    </div>
+    <button class="btn btn-primary fsubmit" type="submit" disabled>상담 신청하기 →</button>
+    <p class="fmsg" role="status" aria-live="polite"></p>
+  </form>
   <div class="reveal d1">
     <div class="card"><h3>의뢰 절차</h3>
       <ul class="flow">
@@ -53,8 +80,15 @@
         <li><div><b>자료 파기</b><span>요청 시 자료 파기 확인서를 발행합니다</span></div></li>
       </ul>
     </div>
+    <div class="card" style="margin-top:20px"><h3>샘플보고서</h3><p class="muted" style="font-size:14.5px">가상 기업으로 작성한 예시 보고서로 결과물을 미리 확인해 보세요.</p>
+      <p class="smp"><a href="assets/sample/K1FF_sample_P2_supplier_capacity.pdf" target="_blank" rel="noopener">P2 협력업체 생산능력 실사 (PDF) →</a></p>
+      <p class="smp"><a href="assets/sample/K1FF_sample_P3_overseas.pdf" target="_blank" rel="noopener">P3 해외 협력사 실사 (PDF) →</a></p></div>
     <div class="note-box" style="margin-top:20px">특정 개인의 소재 파악, 사생활 조사 등 <b>위법하거나 사생활을 침해하는 의뢰는 받지 않습니다.</b></div>
   </div>
+</div></section>
+<section class="bg-soft" id="faq"><div class="wrap">
+  <div class="section-head center"><p class="eyebrow">FAQ</p><h2>자주 묻는 질문</h2></div>
+  <div class="faq"><details class="reveal"><summary>조사 비용은 어떻게 정해지나요?</summary><p>조사 범위 · 등급(BASIC · STANDARD · PREMIUM) · 지역에 따라 달라집니다. 무료 30분 상담에서 목적을 확인한 뒤 항목 · 기간 · 비용을 서면 견적으로 드립니다. 출장 · 통번역 · 외부 전문가 비용은 별도입니다.</p></details><details class="reveal"><summary>조사 기간은 얼마나 걸리나요?</summary><p>협력업체 생산능력 실사는 약 10영업일(현장실사 포함), 해외 협력사 실사는 약 15영업일(현지 방문 포함)이 기준입니다. 공급망 프로세스 사실조사는 데이터 범위에 따라 협의합니다.</p></details><details class="reveal"><summary>조사 대상 회사가 조사 사실을 알게 되나요?</summary><p>공개정보 조사는 대상에게 알리지 않고 진행합니다. 현장실사는 대상 회사의 동의와 협조를 받아 진행하며, 신분을 속이는 위장 · 잠입 방식은 사용하지 않습니다.</p></details><details class="reveal"><summary>어떤 방법으로 조사하나요? 합법적인가요?</summary><p>공개정보 · 동의 기반 현장실사 · 의뢰인이 적법하게 보유한 자료만 사용합니다. 미행 · 위치추적 · 감청 · 무단 전산 접속 등 위법한 방법은 일절 사용하지 않으며, 조사 범위와 적법성을 계약 전에 서면으로 합의합니다.</p></details><details class="reveal"><summary>의뢰 내용과 제공한 자료는 어떻게 보호되나요?</summary><p>계약서에 비밀유지 의무를 명시하고, 조사 종료 후 요청 시 자료를 반환 · 파기하고 파기 확인서를 발행합니다. 첫 문의 단계에서는 민감한 내부자료를 보내지 않으셔도 됩니다.</p></details><details class="reveal"><summary>해외(베트남 등) 협력사도 조사할 수 있나요?</summary><p>가능합니다. 해외 제조법인 현장 경험과 현지 네트워크를 바탕으로 현지 기업등록 · 지배구조 확인과 현장 방문 실사를 수행합니다.</p></details><details class="reveal"><summary>특정 개인에 대한 조사도 가능한가요?</summary><p>아니요. 특정 개인의 소재 · 연락처 탐지나 사생활 조사는 하지 않습니다. 조사는 법인(기업)과 그 사업 활동을 중심으로 합니다.</p></details><details class="reveal"><summary>보고서를 소송 증거로 쓸 수 있나요?</summary><p>보고서는 확인된 사실과 추정 · 의견을 구분해 정리한 사실관계 보고서입니다. 법적 판단과 증거능력은 변호사의 검토가 필요하며, 필요 시 변호사 · 전문기관과 협업합니다.</p></details></div>
 </div></section>
 </main>
 <footer class="site-footer">
@@ -67,11 +101,11 @@
       </div>
       <div>
         <h4>CONTACT</h4>
-        <p>대표 정교한<br><a href="mailto:contact@k1ff.com">contact@k1ff.com</a><br>사업자등록번호: (등록 후 기재)</p>
+        <p>대표 정교한<br>contact@k1ff.com<br><a href="contact.html">상담 문의하기 →</a></p>
       </div>
       <div>
         <h4>MENU</h4>
-        <p><a href="services.html">서비스</a><br><a href="about.html">회사소개</a><br><a href="contact.html">무료 상담 문의</a></p>
+        <p><a href="services.html">서비스</a><br><a href="about.html">회사소개</a><br><a href="contact.html">무료 상담 문의</a><br><a href="privacy.html"><b>개인정보처리방침</b></a></p>
       </div>
     </div>
     <div class="f-bottom"><span>© <span id="year">2026</span> K1 Fact Finder Center. All rights reserved.</span><span>Photos: Unsplash (Unsplash License)</span></div>

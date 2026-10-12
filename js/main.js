@@ -38,3 +38,30 @@
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { set(1); return; }
   loop();
 })();
+
+// 상담 신청서: 동의 후 제출 (data-endpoint 설정 시 전송 서비스, 미설정 시 메일 작성 창)
+(function () {
+  var f = document.getElementById('inquiry'); if (!f) return;
+  var btn = f.querySelector('.fsubmit'), agree = f.querySelector('[name=agree]'), msg = f.querySelector('.fmsg');
+  agree.addEventListener('change', function () { btn.disabled = !agree.checked; });
+  function v(n) { var e = f.querySelector('[name=' + n + ']'); return e ? e.value.trim() : ''; }
+  f.addEventListener('submit', function (e) {
+    e.preventDefault(); msg.className = 'fmsg'; msg.textContent = '';
+    if (!agree.checked) { msg.className = 'fmsg err'; msg.textContent = '개인정보 수집·이용에 동의해 주세요.'; return; }
+    var miss = ['company', 'name', 'email', 'message'].filter(function (n) { return !v(n); });
+    if (miss.length || !f.querySelector('[name=email]').checkValidity()) { msg.className = 'fmsg err'; msg.textContent = '필수 항목(회사명·담당자명·이메일·문의 내용)을 정확히 입력해 주세요.'; return; }
+    var ep = f.getAttribute('data-endpoint');
+    if (ep) {
+      btn.disabled = true; btn.textContent = '전송 중…';
+      fetch(ep, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } })
+        .then(function (r) { if (!r.ok) throw 0; msg.className = 'fmsg ok'; msg.textContent = '접수되었습니다. 영업일 기준 1일 이내에 회신드리겠습니다.'; f.reset(); btn.textContent = '상담 신청하기 →'; })
+        .catch(function () { msg.className = 'fmsg err'; msg.textContent = '전송에 실패했습니다. contact@k1ff.com 으로 메일 주시기 바랍니다.'; btn.disabled = false; btn.textContent = '상담 신청하기 →'; });
+      return;
+    }
+    var body = ['[상담 신청서]', '회사명: ' + v('company'), '담당자명: ' + v('name'), '이메일: ' + v('email'), '연락처: ' + v('phone'),
+      '관심 서비스: ' + v('service'), '희망 일정: ' + v('schedule'), '조사 필요 기업: ' + v('target'), '', '문의 내용:', v('message'), '',
+      '개인정보 수집·이용 동의: 동의함 (' + new Date().toLocaleString('ko-KR') + ')'].join('\n');
+    location.href = 'mailto:contact@k1ff.com?subject=' + encodeURIComponent('[K1FF 상담 신청] ' + v('company')) + '&body=' + encodeURIComponent(body);
+    msg.className = 'fmsg ok'; msg.textContent = '메일 작성 창이 열립니다. 내용을 확인한 뒤 [보내기]를 눌러 주세요.';
+  });
+})();
