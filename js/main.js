@@ -17,7 +17,8 @@
 // 헤더 그림자 + 스크롤 등장 효과
 (function () {
   var h = document.querySelector('.site-header');
-  window.addEventListener('scroll', function () { if (h) h.classList.toggle('scrolled', window.scrollY > 8); });
+  var onS=function () { if (h) h.classList.toggle('scrolled', window.scrollY > 40); }; window.addEventListener('scroll', onS); onS();
+  document.querySelectorAll('.nav a').forEach(function(a){a.addEventListener('click',function(){var n=document.querySelector('.nav');if(n)n.classList.remove('open');});});
   var els = document.querySelectorAll('.reveal');
   if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
   var io = new IntersectionObserver(function (entries) {
