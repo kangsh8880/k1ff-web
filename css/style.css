@@ -352,3 +352,4 @@ th{color:var(--slate);font-weight:700;background:var(--mist2);width:30%}
 @media (max-width:1024px){.cform-wrap{grid-template-columns:1fr}}
 @media (max-width:720px){.cform .frow{grid-template-columns:1fr;gap:0}.policy table{display:block;overflow-x:auto}}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.fmsg a{color:inherit;text-decoration:underline}

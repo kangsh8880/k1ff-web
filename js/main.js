@@ -64,8 +64,7 @@
       '관심 서비스': v('service') || '-', '희망 일정': v('schedule') || '-', '조사 필요 기업': v('target') || '-',
       '문의 내용': v('message'), '개인정보 동의': '동의함 (' + new Date().toLocaleString('ko-KR') + ')'
     };
-    var ep = f.getAttribute('data-endpoint');
-    if (!ep) { mailtoFallback(data); say('ok', '메일 작성 창이 열립니다. 내용을 확인한 뒤 [보내기]를 눌러 주세요.'); return; }
+    var ep = f.getAttribute('data-endpoint') || 'https://formsubmit.co/ajax/contact@k1ff.com';
     btn.disabled = true; btn.textContent = '전송 중…';
     fetch(ep, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
@@ -77,8 +76,10 @@
       })
       .catch(function (err) {
         btn.disabled = false; btn.textContent = LABEL;
-        say('err', '자동 전송에 실패했습니다. 메일 작성 창으로 전환합니다. (' + err.message + ')');
-        setTimeout(function () { mailtoFallback(data); }, 1200);
+        msg.className = 'fmsg err';
+        msg.innerHTML = '일시적으로 자동 전송이 되지 않았습니다. 잠시 후 다시 시도하시거나 <a href="#" class="mfb">이메일로 직접 보내기</a>를 눌러 주세요. (contact@k1ff.com)';
+        msg.querySelector('.mfb').addEventListener('click', function (ev) { ev.preventDefault(); mailtoFallback(data); });
+        if (window.console) console.warn('FormSubmit:', err.message);
       });
   });
 })();
