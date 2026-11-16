@@ -83,3 +83,43 @@
       });
   });
 })();
+
+/* 헤더 v4: 회로선 + 빛 펄스 애니메이션 (장식, 접근성 숨김) */
+(function () {
+  var h = document.querySelector('.site-header'); if (!h || !window.HTMLCanvasElement) return;
+  var c = document.createElement('canvas'); c.className = 'hdr-fx'; c.setAttribute('aria-hidden', 'true'); h.insertBefore(c, h.firstChild);
+  var x = c.getContext('2d'), W = 0, H = 0, dpr = 1, traces = [], pulses = [], nodes = [];
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+  function build() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2); W = h.clientWidth; H = h.clientHeight;
+    c.width = W * dpr; c.height = H * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0);
+    traces = []; nodes = []; pulses = [];
+    var n = Math.max(8, Math.round(W / 90));
+    for (var i = 0; i < n; i++) {
+      var y = rnd(8, H - 8), x0 = rnd(-40, W), len = rnd(120, 320), dir = Math.random() < .5 ? -1 : 1;
+      var bx = x0 + len * rnd(.35, .65), dy = rnd(10, 22) * (y > H / 2 ? -1 : 1);
+      var p = [[x0, y], [bx, y], [bx + Math.abs(dy), y + dy], [x0 + len + Math.abs(dy), y + dy]];
+      if (dir < 0) p.reverse();
+      traces.push(p); nodes.push(p[p.length - 1]); if (Math.random() < .5) nodes.push(p[0]);
+    }
+    for (var k = 0; k < Math.round(n * .6); k++) pulses.push({ t: traces[k % traces.length], s: Math.random(), v: rnd(.0015, .004) });
+  }
+  function seg(p) { var L = [0]; for (var i = 1; i < p.length; i++) L.push(L[i - 1] + Math.hypot(p[i][0] - p[i - 1][0], p[i][1] - p[i - 1][1])); return L; }
+  function at(p, u) { var L = seg(p), d = u * L[L.length - 1]; for (var i = 1; i < p.length; i++) if (d <= L[i]) { var r = (d - L[i - 1]) / (L[i] - L[i - 1] || 1); return [p[i - 1][0] + (p[i][0] - p[i - 1][0]) * r, p[i - 1][1] + (p[i][1] - p[i - 1][1]) * r]; } return p[p.length - 1]; }
+  function draw(tm) {
+    x.clearRect(0, 0, W, H);
+    var g = x.createRadialGradient(W * .5, H * .5, 0, W * .5, H * .5, W * .35);
+    g.addColorStop(0, 'rgba(70,190,230,.18)'); g.addColorStop(1, 'rgba(70,190,230,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
+    x.lineWidth = 1; x.strokeStyle = 'rgba(120,210,240,.22)';
+    traces.forEach(function (p) { x.beginPath(); x.moveTo(p[0][0], p[0][1]); for (var i = 1; i < p.length; i++) x.lineTo(p[i][0], p[i][1]); x.stroke(); });
+    nodes.forEach(function (q, i) { var a = .45 + .35 * Math.sin((tm || 0) / 700 + i); x.beginPath(); x.arc(q[0], q[1], 2.2, 0, 6.283); x.fillStyle = 'rgba(150,230,250,' + a + ')'; x.fill(); });
+    pulses.forEach(function (o) {
+      o.s += still ? 0 : o.v; if (o.s > 1) { o.s = 0; o.t = traces[Math.floor(Math.random() * traces.length)]; }
+      var q = at(o.t, o.s), r = x.createRadialGradient(q[0], q[1], 0, q[0], q[1], 9);
+      r.addColorStop(0, 'rgba(190,245,255,.95)'); r.addColorStop(1, 'rgba(110,220,245,0)'); x.fillStyle = r; x.beginPath(); x.arc(q[0], q[1], 9, 0, 6.283); x.fill();
+    });
+    if (!still) requestAnimationFrame(draw);
+  }
+  build(); draw(0); var to; window.addEventListener('resize', function () { clearTimeout(to); to = setTimeout(function () { build(); if (still) draw(0); }, 150); });
+})();

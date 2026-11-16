@@ -353,3 +353,25 @@ th{color:var(--slate);font-weight:700;background:var(--mist2);width:30%}
 @media (max-width:720px){.cform .frow{grid-template-columns:1fr;gap:0}.policy table{display:block;overflow-x:auto}}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .fmsg a{color:inherit;text-decoration:underline}
+
+/* ---------- 헤더 v4 (2026.11) 미래지향 테크 디자인 ---------- */
+.site-header,.site-header.scrolled{background:linear-gradient(100deg,#071a2b 0%,#0b2a40 45%,#0d3550 60%,#071a2b 100%);color:#E6F4FB;box-shadow:0 6px 28px rgba(4,20,34,.35);backdrop-filter:none}
+.site-header{overflow:hidden;border-bottom:1px solid rgba(127,210,235,.18)}
+.site-header .hdr-fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.site-header .wrap{position:relative;z-index:1}
+.site-header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent 0%,rgba(110,220,245,.0) 10%,rgba(110,220,245,.9) 50%,rgba(110,220,245,0) 90%,transparent 100%);background-size:200% 100%;animation:hdrScan 6s linear infinite;z-index:1}
+@keyframes hdrScan{0%{background-position:100% 0}100%{background-position:-100% 0}}
+.site-header .brand img,.site-header.scrolled .brand img{background:#fff;box-shadow:0 0 0 1px rgba(127,210,235,.55),0 0 18px rgba(90,200,235,.45)}
+.site-header .brand-name{letter-spacing:.01em;text-shadow:0 0 14px rgba(110,220,245,.35)}
+.site-header .brand-name span{color:#BFE6F5;opacity:1}
+.site-header .nav a{color:#DCEFF8;opacity:1;border:1px solid transparent}
+.site-header .nav a:hover,.site-header .nav a.active,.site-header.scrolled .nav a:hover,.site-header.scrolled .nav a.active{background:rgba(110,220,245,.10);border-color:rgba(110,220,245,.45);box-shadow:0 0 14px rgba(90,200,235,.25) inset;color:#fff}
+.site-header .nav a.nav-cta,.site-header.scrolled .nav a.nav-cta{background:linear-gradient(135deg,rgba(110,220,245,.22),rgba(184,221,176,.22));border:1px solid rgba(150,230,245,.8);color:#fff;box-shadow:0 0 16px rgba(90,200,235,.45);animation:ctaGlow 3s ease-in-out infinite}
+.site-header .nav a.nav-cta:hover{background:linear-gradient(135deg,rgba(110,220,245,.38),rgba(184,221,176,.38))}
+@keyframes ctaGlow{0%,100%{box-shadow:0 0 10px rgba(90,200,235,.35)}50%{box-shadow:0 0 22px rgba(90,200,235,.7)}}
+.site-header .nav-toggle{border-color:rgba(150,230,245,.7);color:#E6F4FB}
+@media (prefers-reduced-motion:reduce){.site-header::after,.site-header .nav a.nav-cta{animation:none}}
+@media (max-width:900px){
+  .site-header{overflow:visible}
+  .site-header .nav{background:#0b2a40;color:#E6F4FB;border:1px solid rgba(127,210,235,.35);box-shadow:0 18px 40px rgba(4,20,34,.45)}
+}
