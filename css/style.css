@@ -518,3 +518,37 @@ th{color:var(--slate);font-weight:700;background:var(--mist2);width:30%}
 .lab-lb{position:fixed;inset:0;background:rgba(7,26,43,.86);display:none;align-items:center;justify-content:center;z-index:200;padding:24px;cursor:zoom-out}
 .lab-lb.on{display:flex}
 .lab-lb img{max-width:min(1100px,96vw);max-height:90vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5);background:#fff}
+
+/* K1 Lab 업무 흐름 배열 (2026.11.17) */
+.lab-filter{display:block;margin:-6px 0 30px}
+.lab-flow-bar{display:flex;gap:14px;align-items:stretch;justify-content:center;flex-wrap:wrap}
+.lab-flow-bar button{font:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--slate);border-radius:14px;padding:8px 14px;display:flex;flex-direction:column;align-items:center;line-height:1.25;transition:.2s}
+.lab-flow-bar button b{font-size:17px}.lab-flow-bar button small{font-size:11.5px;letter-spacing:.08em;color:var(--muted)}
+.lab-flow-bar button:hover{border-color:var(--chain)}
+.lab-flow-bar button.on{background:var(--slate);border-color:var(--slate);color:#fff}
+.lab-flow-bar button.on small{color:#cfe3f2}
+.lab-flow-bar button.all{justify-content:center;padding:8px 20px;font-weight:700}
+.lab-flow-bar .chain{display:flex;align-items:center;gap:6px;background:var(--mist2);border:1px solid var(--line);border-radius:18px;padding:6px}
+.lab-flow-bar .chain i{font-style:normal;color:var(--blue);font-weight:800}
+.lab-flow-bar .side{display:flex;gap:6px;align-items:center}
+.lab-stage{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;border-bottom:2px solid var(--line);padding:18px 2px 8px;margin-top:6px}
+.lab-stage:first-child{padding-top:0;margin-top:0}
+.lab-stage b{font-size:23px;color:var(--slate)}
+.lab-stage small{font-size:13px;letter-spacing:.12em;color:var(--blue);font-weight:700}
+.lab-stage em{margin-left:auto;font-style:normal;font-size:14.5px;color:var(--muted)}
+.lab-stage.hide{display:none}
+.lab-svc{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:14px}
+.lab-svc span{font-weight:700;color:var(--muted);margin-right:2px}
+.lab-svc a{padding:3px 10px;border-radius:999px;background:#EEF4FA;border:1px solid #c6d7e8;color:var(--em-blue);font-weight:700}
+.lab-svc a:hover{background:var(--slate);color:#fff;border-color:var(--slate)}
+.lab-svc.ext{color:var(--muted);font-weight:600}
+@media (max-width:900px){.lab-flow-bar .chain{flex-wrap:wrap;justify-content:center}.lab-flow-bar .chain i{display:none}}
+
+/* 홍보영상 섹션 (2026.11.17) */
+.promo{background:radial-gradient(circle at 80% 20%,rgba(90,200,235,.22),transparent 45%),linear-gradient(110deg,#071a2b 0%,#0b2a40 55%,#0d3550 100%);color:#fff}
+.promo h2{color:#fff}.promo .lead{color:rgba(230,244,251,.82)}.promo .eyebrow{color:#9FE3F5}
+.pv-wrap{max-width:1040px;margin:0 auto;border-radius:20px;padding:10px;background:linear-gradient(135deg,rgba(150,230,245,.55),rgba(184,221,176,.45));box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.pv-wrap video{display:block;width:100%;border-radius:12px;background:#0b2a40}
+.pv-meta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
+.pv-meta span{font-size:15.5px;padding:5px 14px;border-radius:999px;border:1px solid rgba(150,230,245,.45);color:#DCEFF8;background:rgba(110,220,245,.08)}
+@media (max-width:700px){.pv-wrap{max-width:360px}}
