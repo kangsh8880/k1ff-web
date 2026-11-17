@@ -500,3 +500,21 @@ th{color:var(--slate);font-weight:700;background:var(--mist2);width:30%}
   .lab-stats .stat-grid>div:nth-child(3){border-left:0}
   .lab-stats .stat-grid>div:nth-child(n+3){border-top:1px solid var(--line)}
 }
+
+/* K1 Lab 실제 화면 (2026.11.17) */
+.shot{all:unset;box-sizing:border-box;display:block;height:200px;position:relative;cursor:zoom-in;overflow:hidden;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#0b2a40,#16405e)}
+.shot img{display:block}
+.shot-d{padding:30px 16px 0}
+.shot-d .bar{position:absolute;left:16px;right:16px;top:14px;height:16px;background:#e9eef3;border-radius:8px 8px 0 0;display:flex;gap:5px;align-items:center;padding-left:8px}
+.shot-d .bar i{width:6px;height:6px;border-radius:50%;background:#c3ccd5}
+.shot-d img{width:100%;height:auto;border-radius:0 0 4px 4px;box-shadow:0 10px 24px rgba(0,0,0,.35);transition:transform .5s}
+.shot-m{display:flex;justify-content:center;padding-top:14px;background:radial-gradient(circle at 50% 30%,#2b6a8f,#0b2a40 70%)}
+.shot-m .phone{width:118px;border:5px solid #1b2733;border-radius:18px 18px 0 0;border-bottom:0;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.4);background:#fff}
+.shot-m img{width:100%;height:auto;transition:transform .5s}
+.shot em{position:absolute;right:10px;top:8px;font-style:normal;font-size:11.5px;font-weight:700;color:#0b2a40;background:#B8DDB0;padding:1px 8px;border-radius:6px}
+.shot-d em{top:auto;bottom:10px}
+.lab-card:hover .shot-d img{transform:translateY(-6px)}
+.lab-card:hover .shot-m img{transform:translateY(-14px)}
+.lab-lb{position:fixed;inset:0;background:rgba(7,26,43,.86);display:none;align-items:center;justify-content:center;z-index:200;padding:24px;cursor:zoom-out}
+.lab-lb.on{display:flex}
+.lab-lb img{max-width:min(1100px,96vw);max-height:90vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5);background:#fff}

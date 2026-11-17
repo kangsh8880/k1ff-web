@@ -9,3 +9,12 @@
     cards.forEach(function (c) { c.classList.toggle('hide', f !== 'all' && c.getAttribute('data-g') !== f); });
   });
 })();
+/* 실제 화면 크게 보기 */
+(function () {
+  var lb = document.createElement('div'); lb.className = 'lab-lb'; lb.innerHTML = '<img alt="">'; document.body.appendChild(lb);
+  document.addEventListener('click', function (e) {
+    var s = e.target.closest('.shot'); if (s) { lb.querySelector('img').src = s.getAttribute('data-src'); lb.querySelector('img').alt = s.getAttribute('aria-label') || ''; lb.classList.add('on'); return; }
+    if (e.target.closest('.lab-lb')) lb.classList.remove('on');
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('on'); });
+})();
